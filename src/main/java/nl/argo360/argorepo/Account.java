@@ -34,6 +34,10 @@ public class Account {
     @ToString.Exclude
     private Set<Contact> contacts;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ToString.Exclude
+    private Set<Location> locations;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
