@@ -1,5 +1,7 @@
-package nl.argo360.argorepo;
+package nl.argo360.crm.controller;
 
+import nl.argo360.crm.doa.Account;
+import nl.argo360.crm.repo.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
@@ -12,11 +14,11 @@ import java.util.List;
 @RestController
 public class CrmController {
 
-    CrmRepository crmRepository;
+    AccountRepository crmRepository;
 
     Logger log = LoggerFactory.getLogger(CrmController.class);
 
-    public CrmController(CrmRepository flightSearchRepository) {
+    public CrmController(AccountRepository flightSearchRepository) {
         this.crmRepository = crmRepository;
     }
 

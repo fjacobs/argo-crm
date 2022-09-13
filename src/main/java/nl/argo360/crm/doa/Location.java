@@ -1,4 +1,4 @@
-package nl.argo360.argorepo;
+package nl.argo360.crm.doa;
 
 import lombok.*;
 import org.hibernate.Hibernate;

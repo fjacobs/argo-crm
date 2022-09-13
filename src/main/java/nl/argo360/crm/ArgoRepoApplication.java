@@ -1,4 +1,4 @@
-package nl.argo360.argorepo;
+package nl.argo360.crm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

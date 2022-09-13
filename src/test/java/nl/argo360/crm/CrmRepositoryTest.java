@@ -1,5 +1,9 @@
-package nl.argo360.argorepo;
+package nl.argo360.crm;
 
+import nl.argo360.crm.doa.Account;
+import nl.argo360.crm.doa.Contact;
+import nl.argo360.crm.doa.Location;
+import nl.argo360.crm.repo.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +17,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.fail;
 @SpringBootTest
 class CrmRepositoryTest {
     @Autowired
-    CrmRepository repository;
+    AccountRepository repository;
 
     @BeforeEach
     void init_database() {
