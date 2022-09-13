@@ -38,6 +38,10 @@ public class Account {
     @ToString.Exclude
     private Set<Location> locations;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ToString.Exclude
+    private Set<Lot> lots;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
