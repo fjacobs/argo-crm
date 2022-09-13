@@ -3,6 +3,7 @@ package nl.argo360.crm;
 import nl.argo360.crm.doa.Account;
 import nl.argo360.crm.doa.Contact;
 import nl.argo360.crm.doa.Location;
+import nl.argo360.crm.doa.Lot;
 import nl.argo360.crm.repo.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -90,6 +91,11 @@ class AccountRepositoryTest {
                 .locations(Set.of(location1))
                 .build();
 
+
+        Lot lot = Lot.builder().id(11231).build();
+
+        account2.setLots(Set.of(lot));
+
         account2.setLocations(Set.of(location1));
         repository.save(account2);
     }
@@ -149,4 +155,19 @@ class AccountRepositoryTest {
         assertThat(dbLocation1.getPostalCode()).isEqualTo("3012 CN");
         assertThat(dbLocation1.getPhone()).isEqualTo("010 - 742 17 54 ");
     }
+
+    @Test
+    void account_coolblue_should_have_lot_11231() {
+        if (repository.findById("Coolblue").isEmpty()) {
+            fail("DB Table account was expected to have a row named Coolblue");
+        }
+        var dbAccount = repository.findById("Coolblue").get();
+
+        if (dbAccount.getLots().isEmpty()) {
+            fail("DB Table account.locations is not expected to be empty");
+        }
+        Lot lot = dbAccount.getLots().stream().findFirst().get();
+        assertThat(lot.getId()).isEqualTo(11231);
+    }
 }
+
