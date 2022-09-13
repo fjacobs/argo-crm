@@ -15,7 +15,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.fail;
 
 @SpringBootTest
-class CrmRepositoryTest {
+class AccountRepositoryTest {
     @Autowired
     AccountRepository repository;
 
@@ -110,14 +110,14 @@ class CrmRepositoryTest {
     }
 
     @Test
-    void contact_test() {
+    void account_equinix_should_have_two_contacts() {
         if (repository.findById("Equinix").isEmpty()) {
-            fail("Account was not inserted in the database.....................");
+            fail("DB Table account was expected to have a row named Equinix");
         }
         var dbAccount = repository.findById("Equinix").get();
 
-        if (dbAccount.getContacts().isEmpty()) {
-            fail("Account does not have any contacts at all................");
+        if (dbAccount.getContacts().size() != 2) {
+            fail("DB table account.contact is expected to have two contacts");
         }
 
         Contact dbContact = dbAccount.getContacts().
@@ -132,14 +132,14 @@ class CrmRepositoryTest {
     }
 
     @Test
-    void location_test() {
+    void account_coolblue_should_have_the_location_rotterdam() {
         if (repository.findById("Coolblue").isEmpty()) {
-            fail("Account was not inserted in the database.....................");
+            fail("DB Table account was expected to have a row named Coolblue");
         }
         var dbAccount = repository.findById("Coolblue").get();
 
         if (dbAccount.getLocations().isEmpty()) {
-            fail("DB Table account does not have any locations...............");
+            fail("DB Table account.locations is not expected to be empty");
         }
         var dbLocation1 = dbAccount.getLocations().stream().findFirst().get();
         assertThat(dbLocation1.getName()).isEqualTo("Vestiging Rotterdam");
